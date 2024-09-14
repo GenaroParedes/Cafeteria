@@ -1,0 +1,67 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.tiposCafe{
+    position: relative;
+    background-color: v.$grisClaro;
+    &-img{
+        display: none;
+    }
+    &-contenido{
+        @include m.contenedor;
+        text-align: center;
+        p{
+            padding: 0 5rem;
+        }
+    }
+    &-titulo{
+        font-size: 5rem;
+        font-weight: 800;
+        color: v.$negro;
+        padding-top: 8rem;
+    }
+    &-items{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 4rem;
+
+        img{
+            width: 70%;
+        }
+    }
+
+    &-item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    @include m.tablet{
+        &-items{
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            img{
+                width: 100%;
+            }
+        }
+        .tiposCafe-item{
+            border: 0.01rem solid rgba($color: v.$negro, $alpha: .1);
+            border-radius: 1rem;
+            box-shadow: .2rem .2rem .2rem rgba($color: v.$negro, $alpha: .3);
+        }
+        &-img{
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 25%;
+        }
+    }
+}
+.item-titulo{
+    font-size: 4rem;
+    margin: 0;
+}

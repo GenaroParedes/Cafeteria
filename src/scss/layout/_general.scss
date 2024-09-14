@@ -1,0 +1,48 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.generales-contenido{
+    background-color: v.$grisClaro;
+    display: grid;
+    @include m.grid(1, 0);
+    .general-img{
+        display: none;
+    }
+
+    @include m.desktop{
+        @include m.grid(2, 0);
+        .general-img{
+            display: block;
+            max-height: 60rem;
+            object-fit: cover;
+        }
+        .general:nth-child(4){
+            grid-column: 1/2;
+            grid-row: 2/3;
+        }
+
+        .general-descripcion:first-child{
+            border-bottom: none;
+        }
+
+        
+    }
+
+    .general-descripcion{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{
+            padding: 0 10rem;
+        }
+    }
+    .general-descripcion:first-child{
+        border-bottom: 1.5px solid rgba($color: #000000, $alpha: .2);
+    }
+
+    .general-titulo{
+        margin-top: 3rem;
+    }
+}
