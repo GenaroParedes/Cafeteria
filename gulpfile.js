@@ -6,14 +6,18 @@ const sass = gulpSass(dartSass);
 export function css(done) {
     src('src/scss/app.scss', {sourcemaps:true}) //Utilizamos la funcion src que importamos arriba y 
     //le pasamos la ruta de donde se encuentra nuestro archivo scss incluido el archivo que queremos compilar
-        .pipe(sass().on('error', sass.logError)) //llamamos a la funcion sass
+        .pipe(sass({
+            outputStyle: 'compressed' //le pasamos la opcion outputStyle: 'compressed' para que el archivo css se comprima
+        }).on('error', sass.logError)) //llamamos a la funcion sass
         .pipe(dest('build/css', {sourcemaps: true})); //por ultimo llamamos a la funcion dest y le pasamos la ruta donde queremos guardar el archivo css
         //Lo anterior es lo mismo que "sass": "sass --watch src/scss:build/css", en el package.json
     done();
 }
 
+import terser from 'gulp-terser'; //Importamos la libreria gulp-terser para minificar el archivo js
 export function js(done) {
     src('src/js/app.js', {sourcemaps:true})
+        .pipe(terser()) //Llamamos a la funcion terser para minificar el archivo js
         .pipe(dest('build/js', {sourcemaps: true}));
     done();
 }
